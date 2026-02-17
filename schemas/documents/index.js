@@ -10,6 +10,8 @@ import successStoryPage from './successStoryPage'
 import { Quiz } from './quiz'
 import { News } from './news'
 import { NewsCategory } from './newsCategory'
+import reviewPage from './reviewPage'
+import textEditor from './textEditor'
 
 export const documentSchemas = [
   Home,
@@ -23,6 +25,8 @@ export const documentSchemas = [
   successStoryPage,
   Quiz,
   News,
-  NewsCategory
+  NewsCategory,
+  reviewPage,
+  textEditor,
   
 ]

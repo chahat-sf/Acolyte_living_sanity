@@ -234,8 +234,8 @@ export default defineConfig({
       enableSearch: true,
       showColorValue: true,
     }),
-    // unsplashImageAsset(),
-    // cloudinaryAssetSourcePlugin(),
+    unsplashImageAsset(),
+    cloudinaryAssetSourcePlugin(),
   ],
 
   schema: {
