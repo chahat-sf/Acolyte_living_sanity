@@ -693,5 +693,19 @@ export default defineType({
         },
       ],
     },
+     {
+      name: 'customScript',
+      title: 'Head Script (injected into <head>)',
+      type: 'text',
+      description: 'For analytics or schema injected in the <head>',
+      group: 'seo',
+    },
+    {
+      name: 'bodyEndScript',
+      title: 'Body-End Script (injected before </body>)',
+      type: 'text',
+      description: 'For chat widgets, trackers, or JS to load at end of page',
+      group: 'seo',
+    },
   ],
 });
