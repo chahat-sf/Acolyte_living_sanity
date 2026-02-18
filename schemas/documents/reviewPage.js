@@ -114,6 +114,7 @@ export default defineType({
           fields: [
             { name: "heading", type: "string" },
             { name: "subheading", type: "string" },
+            { name: "review", type: "number" },
             { name: "description", type: "textEditor" },
 
             {
@@ -329,8 +330,8 @@ export default defineType({
           ],
         },
         {
-          name: "section3",
-          title: "Section 3",
+          name: "bigcardSection",
+          title: "big card section",
           type: "object",
           group: "main",
           fields: [
@@ -347,6 +348,19 @@ export default defineType({
                   fields: [
                     { name: "heading", type: "string" },
                     { name: "subheading", type: "string" },
+                     {
+                      name: "image",
+                      title: "Location Image",
+                      type: "image",
+                      options: { hotspot: true },
+                      fields: [
+                        {
+                          name: "alt",
+                          title: "Alt Text",
+                          type: "string",
+                        },
+                      ],
+                    },
                     {
                       name: "link",
                       title: "Optional Link",
@@ -408,8 +422,8 @@ export default defineType({
           ],
         },
         {
-          name: "nearByLocationSection",
-          title: "Near By Location Section",
+          name: "smallCardSection",
+          title: "Small Card Section",
           type: "object",
           group: "main",
           fields: [
@@ -524,117 +538,117 @@ export default defineType({
             },
           ],
         },
-        {
-          name: "othersectioin",
-          title: "other Section",
-          type: "object",
-          group: "main",
-          fields: [
-            {
-              name: "heading",
-              title: "Main Heading",
-              type: "string",
-            },
+        // {
+        //   name: "othersectioin",
+        //   title: "other Section",
+        //   type: "object",
+        //   group: "main",
+        //   fields: [
+        //     {
+        //       name: "heading",
+        //       title: "Main Heading",
+        //       type: "string",
+        //     },
 
-            {
-              name: "subheading",
-              title: "Subheading",
-              type: "string",
-            },
+        //     {
+        //       name: "subheading",
+        //       title: "Subheading",
+        //       type: "string",
+        //     },
 
-            /* -------- Optional CTA -------- */
+        //     /* -------- Optional CTA -------- */
 
-            {
-              name: "cta",
-              title: "Optional CTA",
-              type: "object",
-              fields: [
-                {
-                  name: "buttonText",
-                  title: "Button Text",
-                  type: "string",
-                },
-                {
-                  name: "internalLink",
-                  title: "Internal Link",
-                  type: "reference",
-                  to: [{ type: "reviewPage" }],
-                },
-                {
-                  name: "externalLink",
-                  title: "External Link",
-                  type: "url",
-                },
-              ],
-            },
+        //     {
+        //       name: "cta",
+        //       title: "Optional CTA",
+        //       type: "object",
+        //       fields: [
+        //         {
+        //           name: "buttonText",
+        //           title: "Button Text",
+        //           type: "string",
+        //         },
+        //         {
+        //           name: "internalLink",
+        //           title: "Internal Link",
+        //           type: "reference",
+        //           to: [{ type: "reviewPage" }],
+        //         },
+        //         {
+        //           name: "externalLink",
+        //           title: "External Link",
+        //           type: "url",
+        //         },
+        //       ],
+        //     },
 
-            /* -------- Location Cards -------- */
+        //     /* -------- Location Cards -------- */
 
-            {
-              name: "cards",
-              title: "Location Cards",
-              type: "array",
-              of: [
-                {
-                  type: "object",
-                  fields: [
-                    // {
-                    //   name: "image",
-                    //   title: "Location Image",
-                    //   type: "image",
-                    //   options: { hotspot: true },
-                    //   fields: [
-                    //     {
-                    //       name: "alt",
-                    //       title: "Alt Text",
-                    //       type: "string"
-                    //     }
-                    //   ]
-                    // },
+        //     {
+        //       name: "cards",
+        //       title: "Location Cards",
+        //       type: "array",
+        //       of: [
+        //         {
+        //           type: "object",
+        //           fields: [
+        //             // {
+        //             //   name: "image",
+        //             //   title: "Location Image",
+        //             //   type: "image",
+        //             //   options: { hotspot: true },
+        //             //   fields: [
+        //             //     {
+        //             //       name: "alt",
+        //             //       title: "Alt Text",
+        //             //       type: "string"
+        //             //     }
+        //             //   ]
+        //             // },
 
-                    {
-                      name: "heading",
-                      title: "Heading",
-                      type: "string",
-                    },
+        //             {
+        //               name: "heading",
+        //               title: "Heading",
+        //               type: "string",
+        //             },
 
-                    {
-                      name: "subheading",
-                      title: "Subheading",
-                      type: "string",
-                    },
+        //             {
+        //               name: "subheading",
+        //               title: "Subheading",
+        //               type: "string",
+        //             },
 
-                    {
-                      name: "distance",
-                      title: "Distance (Optional)",
-                      type: "string",
-                      description: "Example: 2 km, 5 mins drive",
-                    },
+        //             {
+        //               name: "distance",
+        //               title: "Distance (Optional)",
+        //               type: "string",
+        //               description: "Example: 2 km, 5 mins drive",
+        //             },
 
-                    {
-                      name: "link",
-                      title: "Optional Card Link",
-                      type: "object",
-                      fields: [
-                        {
-                          name: "internalLink",
-                          title: "Internal Link",
-                          type: "reference",
-                          to: [{ type: "reviewPage" }],
-                        },
-                        {
-                          name: "externalLink",
-                          title: "External Link",
-                          type: "url",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
+        //             {
+        //               name: "link",
+        //               title: "Optional Card Link",
+        //               type: "object",
+        //               fields: [
+        //                 {
+        //                   name: "internalLink",
+        //                   title: "Internal Link",
+        //                   type: "reference",
+        //                   to: [{ type: "reviewPage" }],
+        //                 },
+        //                 {
+        //                   name: "externalLink",
+        //                   title: "External Link",
+        //                   type: "url",
+        //                 },
+        //               ],
+        //             },
+        //           ],
+        //         },
+        //       ],
+        //     },
+        //   ],
+        // },
       ],
     },
 
