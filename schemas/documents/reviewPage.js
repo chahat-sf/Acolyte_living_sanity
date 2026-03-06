@@ -32,6 +32,17 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
       group: "main",
+    }, {
+      name: "externelslug",
+      title: "externel Slug",
+      description:"for listing page url",
+      type: "slug",
+      options: {
+        // source: "reviewId",
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+      group: "main",
     },
 
     /* ================= SECTION 1 ================= */
