@@ -50,7 +50,21 @@ export const Blog = defineType({
       default:false,
       group: 'main',
     }),
-
+    defineField({
+      name: 'blogCategory',
+      title: 'Blog Category',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Accommodation guide blogs', value: 'accommodation-guide-blogs'},
+          {title: 'University blogs', value: 'university-blogs'},
+          {title: 'Property blogs', value: 'property-blogs'},
+          {title: 'Property reviews blog', value: 'property-reviews-blog'},
+        ],
+        layout: 'dropdown',
+      },
+      group: 'main',
+    }),
     defineField({
       name: 'slug',
       title: 'URL Slug',
@@ -420,5 +434,22 @@ export const Blog = defineType({
       description: 'For chat widgets, trackers, or JS to load at end of page',
       group: 'seo',
     }),
+    // author name default value acolyte Living 
+    defineField({
+      name: 'authorName',
+      title: 'Author Name',
+      type: 'string',
+      initialValue: 'acolyte Living',
+      group: 'main',
+    }),
+    // update / created date 
+    defineField({
+      name: 'publishedAt',
+      title: 'Published At',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+      group: 'main',
+    })
+
   ],
 })
