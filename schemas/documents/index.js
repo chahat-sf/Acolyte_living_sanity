@@ -12,6 +12,8 @@ import { News } from './news'
 import { NewsCategory } from './newsCategory'
 import reviewPage from './reviewPage'
 import textEditor from './textEditor'
+import propertyPageSeo from './propertyPageSeo'
+import resumeApplication from './resumeApplication'
 
 export const documentSchemas = [
   Home,
@@ -27,6 +29,8 @@ export const documentSchemas = [
   News,
   NewsCategory,
   reviewPage,
+  propertyPageSeo,
   textEditor,
+  resumeApplication,
   
 ]
