@@ -11,6 +11,8 @@ import {ImImage, ImTextColor} from 'react-icons/im'
 import {defineField, defineType} from 'sanity'
 import {TextAlign} from './TextAlign'
 import {TextColor} from './TextColor'
+import { countryOptions } from './locations'
+import { CitySelect } from './CitySelect'
 
 export const Blog = defineType({
   name: 'blog',
@@ -56,12 +58,31 @@ export const Blog = defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Accommodation guide blogs', value: 'accommodation-guide-blogs'},
-          {title: 'University blogs', value: 'university-blogs'},
-          {title: 'Property blogs', value: 'property-blogs'},
-          {title: 'Property reviews blog', value: 'property-reviews-blog'},
+          {title: 'Property Blog', value: 'property-blog'},
+          {title: 'University', value: 'university'},
+          {title: 'Information Guide', value: 'information-guide'},
+          {title: 'Others', value: 'others'},
         ],
         layout: 'dropdown',
+      },
+      group: 'main',
+    }),
+    defineField({
+      name: 'countryCode',
+      title: 'Country',
+      type: 'string',
+      options: {
+        list: countryOptions,
+        layout: 'dropdown',
+      },
+      group: 'main',
+    }),
+    defineField({
+      name: 'cityName',
+      title: 'City',
+      type: 'string',
+      components: {
+        input: CitySelect,
       },
       group: 'main',
     }),

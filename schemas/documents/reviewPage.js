@@ -1,4 +1,6 @@
 import { defineType } from "sanity";
+import { countryOptions } from "./locations";
+import { CitySelect } from "./CitySelect";
 
 
 export default defineType({
@@ -43,6 +45,40 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
       group: "main",
+    },
+    {
+      name: 'blogCategory',
+      title: 'Blog Category',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Property Blog', value: 'property-blog'},
+          {title: 'University', value: 'university'},
+          {title: 'Information Guide', value: 'information-guide'},
+          {title: 'Others', value: 'others'},
+        ],
+        layout: 'dropdown',
+      },
+      group: 'main',
+    },
+    {
+      name: 'countryCode',
+      title: 'Country',
+      type: 'string',
+      options: {
+        list: countryOptions,
+        layout: 'dropdown',
+      },
+      group: 'main',
+    },
+    {
+      name: 'cityName',
+      title: 'City',
+      type: 'string',
+      components: {
+        input: CitySelect,
+      },
+      group: 'main',
     },
 
     /* ================= SECTION 1 ================= */
