@@ -1,10 +1,11 @@
-import {Home} from './Home'
-import {About} from './about'
-import {Services} from './service'
-import {Contact} from './contact'
-import {Blog} from './blog'
-import {Service} from './services'
-import {ServiceCategory} from './serviceCategory'
+import { Home } from './Home'
+import { About } from './about'
+import { Services } from './service'
+import { Contact } from './contact'
+import { Blog } from './blog'
+import { BlogCategory } from './blogCategory'
+import { Service } from './services'
+import { ServiceCategory } from './serviceCategory'
 import successStory from './successStory'
 import successStoryPage from './successStoryPage'
 import { Quiz } from './quiz'
@@ -21,6 +22,7 @@ export const documentSchemas = [
   Services,
   Contact,
   Blog,
+  BlogCategory,
   Service,
   ServiceCategory,
   successStory,
@@ -32,5 +34,5 @@ export const documentSchemas = [
   propertyPageSeo,
   textEditor,
   resumeApplication,
-  
+
 ]

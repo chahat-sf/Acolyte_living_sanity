@@ -1,16 +1,16 @@
-import {BiTable} from 'react-icons/bi'
-import {BsImage, BsQuote, BsYoutube} from 'react-icons/bs'
+import { BiTable } from 'react-icons/bi'
+import { BsImage, BsQuote, BsYoutube } from 'react-icons/bs'
 import {
   CiTextAlignCenter,
   CiTextAlignJustify,
   CiTextAlignLeft,
   CiTextAlignRight,
 } from 'react-icons/ci'
-import {FiExternalLink} from 'react-icons/fi'
-import {ImImage, ImTextColor} from 'react-icons/im'
-import {defineField, defineType} from 'sanity'
-import {TextAlign} from './TextAlign'
-import {TextColor} from './TextColor'
+import { FiExternalLink } from 'react-icons/fi'
+import { ImImage, ImTextColor } from 'react-icons/im'
+import { defineField, defineType } from 'sanity'
+import { TextAlign } from './TextAlign'
+import { TextColor } from './TextColor'
 import { countryOptions } from './locations'
 import { CitySelect } from './CitySelect'
 
@@ -49,21 +49,16 @@ export const Blog = defineType({
       title: 'Featured Blog ',
       description: 'Main heading for the hero section',
       type: 'boolean',
-      default:false,
+      default: false,
       group: 'main',
     }),
     defineField({
       name: 'blogCategory',
       title: 'Blog Category',
-      type: 'string',
+      type: 'reference',
+      to: [{ type: 'blogCategory' }],
       options: {
-        list: [
-          {title: 'Property Blog', value: 'property-blog'},
-          {title: 'University', value: 'university'},
-          {title: 'Information Guide', value: 'information-guide'},
-          {title: 'Others', value: 'others'},
-        ],
-        layout: 'dropdown',
+        disableNew: false,
       },
       group: 'main',
     }),
@@ -131,9 +126,9 @@ export const Blog = defineType({
 
           marks: {
             decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-              {title: 'Underline', value: 'underline'},
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Underline', value: 'underline' },
               {
                 title: 'Left',
                 value: 'left',
@@ -175,13 +170,13 @@ export const Blog = defineType({
                   {
                     name: 'Externel_Link',
                     type: 'url',
-                    to: [{type: 'url'}],
+                    to: [{ type: 'url' }],
                   },
                   {
                     name: 'Internal_link',
                     type: 'reference',
                     to: [
-                      {type: 'blog'},
+                      { type: 'blog' },
                       // other types you may want to link to
                     ],
                   },
@@ -189,7 +184,7 @@ export const Blog = defineType({
                     name: 'href',
                     type: 'url',
                     title: 'Link URL',
-                    validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
+                    validation: (Rule) => Rule.uri({ scheme: ['http', 'https'] }),
                     // hidden:true,
                   },
                 ],
@@ -208,7 +203,7 @@ export const Blog = defineType({
               name: 'newsItems',
               title: 'Select News Items',
               type: 'array',
-              of: [{type: 'reference', to: [{type: 'news'}]}],
+              of: [{ type: 'reference', to: [{ type: 'news' }] }],
               validation: (Rule) => Rule.required().min(1),
             },
           ],
@@ -216,7 +211,7 @@ export const Blog = defineType({
             select: {
               news: 'newsItems',
             },
-            prepare({news}) {
+            prepare({ news }) {
               const count = news?.length || 0
               return {
                 title: count > 0 ? `${count} News Selected` : 'No News Selected',
@@ -234,7 +229,7 @@ export const Blog = defineType({
           type: 'image',
           title: 'Image',
           icon: ImImage,
-          options: {hotspot: true},
+          options: { hotspot: true },
           fields: [
             {
               name: 'alt',
@@ -263,9 +258,9 @@ export const Blog = defineType({
               initialValue: 'center',
               options: {
                 list: [
-                  {title: 'Left', value: 'left'},
-                  {title: 'Center', value: 'center'},
-                  {title: 'Right', value: 'right'},
+                  { title: 'Left', value: 'left' },
+                  { title: 'Center', value: 'center' },
+                  { title: 'Right', value: 'right' },
                 ],
                 layout: 'radio',
                 direction: 'horizontal',
@@ -296,7 +291,7 @@ export const Blog = defineType({
                         {
                           type: 'object',
                           fields: [
-                            {name: 'text', type: 'string', title: 'Cell Content'},
+                            { name: 'text', type: 'string', title: 'Cell Content' },
                             {
                               name: 'bold',
                               type: 'boolean',
@@ -315,7 +310,7 @@ export const Blog = defineType({
             select: {
               rows: 'rows',
             },
-            prepare({rows}) {
+            prepare({ rows }) {
               return {
                 title: 'Table',
                 subtitle: `${rows?.length || 0} row(s)`,
@@ -334,14 +329,14 @@ export const Blog = defineType({
               name: 'url',
               type: 'url',
               title: 'YouTube URL',
-              validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
+              validation: (Rule) => Rule.uri({ scheme: ['http', 'https'] }),
             },
           ],
           preview: {
             select: {
               url: 'url',
             },
-            prepare({url}) {
+            prepare({ url }) {
               return {
                 title: 'YouTube Video',
                 subtitle: url,
@@ -372,7 +367,7 @@ export const Blog = defineType({
               title: 'text',
               subtitle: 'author',
             },
-            prepare({title, subtitle}) {
+            prepare({ title, subtitle }) {
               return {
                 title: `${title?.substring(0, 40)}${title?.length > 40 ? '…' : ''}`,
                 subtitle: subtitle ? `— ${subtitle}` : 'Quote',
@@ -396,7 +391,7 @@ export const Blog = defineType({
               name: 'url',
               type: 'url',
               title: 'URL',
-              validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
+              validation: (Rule) => Rule.uri({ scheme: ['http', 'https'] }),
             },
           ],
           preview: {
@@ -404,7 +399,7 @@ export const Blog = defineType({
               title: 'label',
               subtitle: 'url',
             },
-            prepare({title, subtitle}) {
+            prepare({ title, subtitle }) {
               return {
                 title: title || 'External Link',
                 subtitle: subtitle,
@@ -419,8 +414,8 @@ export const Blog = defineType({
       name: 'tags',
       title: 'Tags',
       type: 'array',
-      of: [{type: 'string'}],
-      options: {layout: 'tags'},
+      of: [{ type: 'string' }],
+      options: { layout: 'tags' },
       group: 'main',
     }),
     defineField({

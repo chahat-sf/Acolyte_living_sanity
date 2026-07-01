@@ -9,7 +9,8 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "deploy-graphql": "sanity graphql deploy",
+    "migrate:blog-categories": "sanity exec scripts/migrateBlogCategories.js --with-user-token"
   },
   "keywords": [
     "sanity"

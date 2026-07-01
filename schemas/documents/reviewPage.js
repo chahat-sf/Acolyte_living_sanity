@@ -37,7 +37,7 @@ export default defineType({
     }, {
       name: "externelslug",
       title: "externel Slug",
-      description:"for listing page url",
+      description: "for listing page url",
       type: "slug",
       options: {
         // source: "reviewId",
@@ -49,15 +49,10 @@ export default defineType({
     {
       name: 'blogCategory',
       title: 'Blog Category',
-      type: 'string',
+      type: 'reference',
+      to: [{ type: 'blogCategory' }],
       options: {
-        list: [
-          {title: 'Property Blog', value: 'property-blog'},
-          {title: 'University', value: 'university'},
-          {title: 'Information Guide', value: 'information-guide'},
-          {title: 'Others', value: 'others'},
-        ],
-        layout: 'dropdown',
+        disableNew: false,
       },
       group: 'main',
     },
@@ -320,7 +315,7 @@ export default defineType({
                     },
                   ],
                 },
-                  /* -----------card 5 -------*/
+                /* -----------card 5 -------*/
                 {
                   name: "card5",
                   title: "Card 5",
@@ -342,7 +337,7 @@ export default defineType({
                             { name: "icon", title: "Icon", type: "image" },
                             { name: "heading", type: "string" },
                             { name: "subheading", type: "string" },
-                             {
+                            {
                               name: "description",
                               title: "Description List",
                               type: "textEditor",
@@ -365,7 +360,7 @@ export default defineType({
                                 },
                               ],
                             },
-                           
+
                           ],
                         },
                       ],
@@ -395,7 +390,7 @@ export default defineType({
                   fields: [
                     { name: "heading", type: "string" },
                     { name: "subheading", type: "string" },
-                     {
+                    {
                       name: "image",
                       title: "Location Image",
                       type: "image",
@@ -754,7 +749,7 @@ export default defineType({
         },
       ],
     },
-     {
+    {
       name: 'customScript',
       title: 'Head Script (injected into <head>)',
       type: 'text',
