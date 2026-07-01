@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true
   },
-  "include": ["./**/*"]
+  "include": ["./**/*"],
+  "exclude": ["node_modules", "dist", ".sanity"]
 }
