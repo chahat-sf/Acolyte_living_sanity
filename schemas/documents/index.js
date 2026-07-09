@@ -15,6 +15,7 @@ import reviewPage from './reviewPage'
 import textEditor from './textEditor'
 import propertyPageSeo from './propertyPageSeo'
 import resumeApplication from './resumeApplication'
+import { BlogPromoBanners } from './blogPromoBanners'
 
 export const documentSchemas = [
   Home,
@@ -34,5 +35,6 @@ export const documentSchemas = [
   propertyPageSeo,
   textEditor,
   resumeApplication,
+  BlogPromoBanners,
 
 ]

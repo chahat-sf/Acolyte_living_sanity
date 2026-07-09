@@ -11,7 +11,25 @@ export default (S) =>
 
       S.divider(),
 
-      S.listItem().title('Blog').child(S.documentTypeList('blog').title('Blog Posts')),
+      S.listItem()
+        .title('Blog')
+        .child(
+          S.list()
+            .title('Blog')
+            .items([
+              S.listItem()
+                .title('Blog Posts')
+                .child(S.documentTypeList('blog').title('Blog Posts')),
+              S.listItem()
+                .title('Blog Promo Banners')
+                .child(
+                  S.document()
+                    .schemaType('blogPromoBanners')
+                    .documentId('blogPromoBanners')
+                    .title('Blog Promo Banners'),
+                ),
+            ]),
+        ),
 
       S.listItem()
         .title('Services')
@@ -34,7 +52,7 @@ export default (S) =>
                       S.documentList()
                         .title('Service Pages')
                         .filter('_type == "servicePage" && category._ref == $categoryId')
-                        .params({categoryId}),
+                        .params({ categoryId }),
                     ),
                 ),
 
@@ -85,7 +103,7 @@ export default (S) =>
             ]),
         ),
 
-          S.listItem()
+      S.listItem()
         .title('News')
         .child(
           S.list()
@@ -106,7 +124,7 @@ export default (S) =>
                       S.documentList()
                         .title('News Pages')
                         .filter('_type == "news" && category._ref == $categoryId')
-                        .params({categoryId}),
+                        .params({ categoryId }),
                     ),
                 ),
 
@@ -139,6 +157,7 @@ export default (S) =>
             'about',
             'contact',
             'blog',
+            'blogPromoBanners',
             'servicePage',
             'serviceCategory',
             'navbar',
