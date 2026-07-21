@@ -82,6 +82,25 @@ export const Blog = defineType({
       group: 'main',
     }),
     defineField({
+      name: 'selectedProperties',
+      title: 'Selected Properties',
+      type: 'array',
+      group: 'main',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'propertyId',
+              title: 'Property ID',
+              type: 'string',
+              description: 'Enter the property/house ID from backend.',
+            }),
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: 'slug',
       title: 'URL Slug',
       type: 'slug',
