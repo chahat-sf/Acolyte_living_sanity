@@ -487,4 +487,12 @@ export const Blog = defineType({
     })
 
   ],
+
+  preview: {
+    select: {
+      title: 'blogHeading',
+      subtitle: 'blogSubHeading',
+      media: 'blogBannerImage',
+    },
+  }
 })

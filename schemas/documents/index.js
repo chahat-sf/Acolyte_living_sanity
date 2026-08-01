@@ -16,6 +16,7 @@ import textEditor from './textEditor'
 import propertyPageSeo from './propertyPageSeo'
 import resumeApplication from './resumeApplication'
 import { BlogPromoBanners } from './blogPromoBanners'
+import { Post } from './post'
 
 export const documentSchemas = [
   Home,
@@ -30,11 +31,11 @@ export const documentSchemas = [
   successStoryPage,
   Quiz,
   News,
+  Post,
   NewsCategory,
   reviewPage,
   propertyPageSeo,
   textEditor,
   resumeApplication,
   BlogPromoBanners,
-
 ]
