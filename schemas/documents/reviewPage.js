@@ -141,109 +141,103 @@ export default defineType({
       ],
     },
 
-    /* ================= multiple SECTION  ================= */
+    /* ================= LEGACY: multipleSection (keeps old data intact) ================= */
     {
       name: "multipleSection",
-      title: "multiple section (Repeatable)",
+      title: "Multiple Section (Legacy — existing records)",
       type: "array",
-      description: "Optional — fill only when required",
+      description: "Legacy field — existing filled data lives here. Do not delete. New records use the 9 fixed sections below.",
       group: "main",
       of: [
+        /* ---------- section2 ---------- */
         {
           type: "object",
           name: "section2",
           title: "Section 2",
+          preview: {
+            select: { title: "heading" },
+            prepare({ title }) { return { title: title || "Section 2" }; },
+          },
           fields: [
-            { name: "heading", type: "string" },
-            { name: "subheading", type: "string" },
-            { name: "review", type: "number" },
-            { name: "description", type: "textEditor" },
-
+            { name: "heading", title: "Heading", type: "string" },
+            { name: "subheading", title: "Subheading", type: "string" },
+            { name: "review", title: "Review Score", type: "number" },
+            { name: "description", title: "Description", type: "textEditor" },
             {
               name: "cards",
+              title: "Cards",
               type: "array",
               of: [
-                /* -----------card 1 -------*/
-
                 {
                   type: "object",
                   name: "card1",
                   title: "Card 1",
                   fields: [
-                    { name: "icon", type: "image" },
-                    { name: "heading", type: "string" },
-                    { name: "subheading", type: "string" },
+                    { name: "icon", title: "Icon", type: "image" },
+                    { name: "heading", title: "Heading", type: "string" },
+                    { name: "subheading", title: "Subheading", type: "string" },
                     {
                       name: "smallCards",
+                      title: "Small Cards",
                       type: "array",
                       of: [
                         {
                           type: "object",
                           fields: [
                             { name: "icon", title: "Icon", type: "image" },
-                            { name: "heading", type: "string" },
-                            { name: "subheading", type: "string" },
-                            { name: "description", type: "textEditor" },
+                            { name: "heading", title: "Heading", type: "string" },
+                            { name: "subheading", title: "Subheading", type: "string" },
+                            { name: "description", title: "Description", type: "textEditor" },
                           ],
                         },
                       ],
                     },
                   ],
                 },
-                /* -----------card 2 -------*/
-
                 {
                   type: "object",
                   name: "card2",
                   title: "Card 2",
                   fields: [
-                    { name: "icon", type: "image" },
-                    { name: "heading", type: "string" },
-                    { name: "subheading", type: "string" },
+                    { name: "icon", title: "Icon", type: "image" },
+                    { name: "heading", title: "Heading", type: "string" },
+                    { name: "subheading", title: "Subheading", type: "string" },
                     {
                       name: "smallCards",
+                      title: "Small Cards",
                       type: "array",
                       of: [
                         {
                           type: "object",
                           fields: [
-                            { name: "icon", type: "image" },
-                            { name: "heading", type: "string" },
-                            { name: "subheading", type: "string" },
-                            { name: "description", type: "textEditor" },
+                            { name: "icon", title: "Icon", type: "image" },
+                            { name: "heading", title: "Heading", type: "string" },
+                            { name: "subheading", title: "Subheading", type: "string" },
+                            { name: "description", title: "Description", type: "textEditor" },
                           ],
                         },
                       ],
                     },
                   ],
                 },
-                /* -----------card 3 -------*/
-
                 {
                   type: "object",
                   name: "card3",
                   title: "Card 3",
                   fields: [
-                    { name: "icon", type: "image" },
-                    { name: "heading", type: "string" },
-                    { name: "subheading", type: "string" },
-                    {
-                      name: "description",
-                      type: "textEditor",
-                    },
+                    { name: "icon", title: "Icon", type: "image" },
+                    { name: "heading", title: "Heading", type: "string" },
+                    { name: "subheading", title: "Subheading", type: "string" },
+                    { name: "description", title: "Description", type: "textEditor" },
                   ],
                 },
-                /* -----------card 4 -------*/
                 {
+                  type: "object",
                   name: "card4",
                   title: "Card 4",
-                  type: "object",
-                  description: "this is for university listing near by",
-                  group: "main",
                   fields: [
                     { name: "heading", title: "Heading", type: "string" },
                     { name: "subheading", title: "Subheading", type: "string" },
-
                     {
                       name: "listItems",
                       title: "List Items",
@@ -253,27 +247,17 @@ export default defineType({
                           type: "object",
                           fields: [
                             { name: "icon", title: "Icon", type: "image" },
-                            { name: "heading", type: "string" },
-                            { name: "subheading", type: "string" },
+                            { name: "heading", title: "Heading", type: "string" },
+                            { name: "subheading", title: "Subheading", type: "string" },
                             {
                               name: "link",
                               title: "Optional Link",
                               type: "object",
                               fields: [
-                                {
-                                  name: "internalLink",
-                                  title: "Internal Link",
-                                  type: "reference",
-                                  to: [{ type: "reviewPage" }],
-                                },
-                                {
-                                  name: "externalLink",
-                                  title: "External Link",
-                                  type: "url",
-                                },
+                                { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                                { name: "externalLink", title: "External Link", type: "url" },
                               ],
                             },
-                            /* 🔥 Description as List Array */
                             {
                               name: "description",
                               title: "Description List",
@@ -282,27 +266,14 @@ export default defineType({
                                 {
                                   type: "object",
                                   fields: [
-                                    {
-                                      name: "text",
-                                      title: "Text",
-                                      type: "textEditor",
-                                    },
+                                    { name: "text", title: "Text", type: "textEditor" },
                                     {
                                       name: "link",
                                       title: "Optional Link",
                                       type: "object",
                                       fields: [
-                                        {
-                                          name: "internalLink",
-                                          title: "Internal Link",
-                                          type: "reference",
-                                          to: [{ type: "reviewPage" }],
-                                        },
-                                        {
-                                          name: "externalLink",
-                                          title: "External Link",
-                                          type: "url",
-                                        },
+                                        { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                                        { name: "externalLink", title: "External Link", type: "url" },
                                       ],
                                     },
                                   ],
@@ -315,17 +286,11 @@ export default defineType({
                     },
                   ],
                 },
-                /* -----------card 5 -------*/
                 {
+                  type: "object",
                   name: "card5",
                   title: "Card 5",
-                  type: "object",
-                  description: "this is for  heading subheading",
-                  group: "main",
                   fields: [
-                    // { name: "heading", title: "Heading", type: "string" },
-                    // { name: "subheading", title: "Subheading", type: "string" },
-
                     {
                       name: "listItems",
                       title: "List Items",
@@ -335,32 +300,18 @@ export default defineType({
                           type: "object",
                           fields: [
                             { name: "icon", title: "Icon", type: "image" },
-                            { name: "heading", type: "string" },
-                            { name: "subheading", type: "string" },
-                            {
-                              name: "description",
-                              title: "Description List",
-                              type: "textEditor",
-                            },
+                            { name: "heading", title: "Heading", type: "string" },
+                            { name: "subheading", title: "Subheading", type: "string" },
+                            { name: "description", title: "Description", type: "textEditor" },
                             {
                               name: "link",
                               title: "Optional Link",
                               type: "object",
                               fields: [
-                                {
-                                  name: "internalLink",
-                                  title: "Internal Link",
-                                  type: "reference",
-                                  to: [{ type: "reviewPage" }],
-                                },
-                                {
-                                  name: "externalLink",
-                                  title: "External Link",
-                                  type: "url",
-                                },
+                                { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                                { name: "externalLink", title: "External Link", type: "url" },
                               ],
                             },
-
                           ],
                         },
                       ],
@@ -371,15 +322,19 @@ export default defineType({
             },
           ],
         },
+
+        /* ---------- bigcardSection ---------- */
         {
-          name: "bigcardSection",
-          title: "big card section",
           type: "object",
-          group: "main",
+          name: "bigcardSection",
+          title: "Big Card Section",
+          preview: {
+            select: { title: "heading" },
+            prepare({ title }) { return { title: title || "Big Card Section" }; },
+          },
           fields: [
             { name: "heading", title: "Heading", type: "string" },
             { name: "subheading", title: "Subheading", type: "string" },
-
             {
               name: "listItems",
               title: "List Items",
@@ -388,40 +343,24 @@ export default defineType({
                 {
                   type: "object",
                   fields: [
-                    { name: "heading", type: "string" },
-                    { name: "subheading", type: "string" },
+                    { name: "heading", title: "Heading", type: "string" },
+                    { name: "subheading", title: "Subheading", type: "string" },
                     {
                       name: "image",
-                      title: "Location Image",
+                      title: "Image",
                       type: "image",
                       options: { hotspot: true },
-                      fields: [
-                        {
-                          name: "alt",
-                          title: "Alt Text",
-                          type: "string",
-                        },
-                      ],
+                      fields: [{ name: "alt", title: "Alt Text", type: "string" }],
                     },
                     {
                       name: "link",
                       title: "Optional Link",
                       type: "object",
                       fields: [
-                        {
-                          name: "internalLink",
-                          title: "Internal Link",
-                          type: "reference",
-                          to: [{ type: "reviewPage" }],
-                        },
-                        {
-                          name: "externalLink",
-                          title: "External Link",
-                          type: "url",
-                        },
+                        { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                        { name: "externalLink", title: "External Link", type: "url" },
                       ],
                     },
-                    /* 🔥 Description as List Array */
                     {
                       name: "description",
                       title: "Description List",
@@ -430,27 +369,14 @@ export default defineType({
                         {
                           type: "object",
                           fields: [
-                            {
-                              name: "text",
-                              title: "Text",
-                              type: "text",
-                            },
+                            { name: "text", title: "Text", type: "text" },
                             {
                               name: "link",
                               title: "Optional Link",
                               type: "object",
                               fields: [
-                                {
-                                  name: "internalLink",
-                                  title: "Internal Link",
-                                  type: "reference",
-                                  to: [{ type: "reviewPage" }],
-                                },
-                                {
-                                  name: "externalLink",
-                                  title: "External Link",
-                                  type: "url",
-                                },
+                                { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                                { name: "externalLink", title: "External Link", type: "url" },
                               ],
                             },
                           ],
@@ -463,52 +389,29 @@ export default defineType({
             },
           ],
         },
+
+        /* ---------- smallCardSection ---------- */
         {
+          type: "object",
           name: "smallCardSection",
           title: "Small Card Section",
-          type: "object",
-          group: "main",
+          preview: {
+            select: { title: "heading" },
+            prepare({ title }) { return { title: title || "Small Card Section" }; },
+          },
           fields: [
-            {
-              name: "heading",
-              title: "Main Heading",
-              type: "string",
-            },
-
-            {
-              name: "subheading",
-              title: "Subheading",
-              type: "string",
-            },
-
-            /* -------- Optional CTA -------- */
-
+            { name: "heading", title: "Main Heading", type: "string" },
+            { name: "subheading", title: "Subheading", type: "string" },
             {
               name: "cta",
               title: "Optional CTA",
               type: "object",
               fields: [
-                {
-                  name: "buttonText",
-                  title: "Button Text",
-                  type: "string",
-                },
-                {
-                  name: "internalLink",
-                  title: "Internal Link",
-                  type: "reference",
-                  to: [{ type: "reviewPage" }],
-                },
-                {
-                  name: "externalLink",
-                  title: "External Link",
-                  type: "url",
-                },
+                { name: "buttonText", title: "Button Text", type: "string" },
+                { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                { name: "externalLink", title: "External Link", type: "url" },
               ],
             },
-
-            /* -------- Location Cards -------- */
-
             {
               name: "cards",
               title: "Location Cards",
@@ -522,55 +425,202 @@ export default defineType({
                       title: "Location Image",
                       type: "image",
                       options: { hotspot: true },
-                      fields: [
-                        {
-                          name: "alt",
-                          title: "Alt Text",
-                          type: "string",
-                        },
-                      ],
+                      fields: [{ name: "alt", title: "Alt Text", type: "string" }],
                     },
-
-                    {
-                      name: "heading",
-                      title: "Heading",
-                      type: "string",
-                    },
-
-                    {
-                      name: "subheading",
-                      title: "Subheading",
-                      type: "string",
-                    },
-
-                    {
-                      name: "distance",
-                      title: "Distance (Optional)",
-                      type: "string",
-                      description: "Example: 2 km, 5 mins drive",
-                    },
-
-                    {
-                      name: "description",
-                      title: "Description",
-                      type: "text",
-                    },
-
+                    { name: "heading", title: "Heading", type: "string" },
+                    { name: "subheading", title: "Subheading", type: "string" },
+                    { name: "distance", title: "Distance (Optional)", type: "string", description: "Example: 2 km, 5 mins drive" },
+                    { name: "description", title: "Description", type: "text" },
                     {
                       name: "link",
                       title: "Optional Card Link",
                       type: "object",
                       fields: [
+                        { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                        { name: "externalLink", title: "External Link", type: "url" },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    /* ================= 9 FIXED SECTIONS ================= */
+
+    /* ----- 1. Everything you want to know about ----- */
+    {
+      name: "sec_everythingToKnow",
+      title: "Everything you want to know about...",
+      type: "object",
+      group: "main",
+      fields: [
+        {
+          name: "propertyName",
+          title: "Property Name (e.g. The Pavilion)",
+          type: "string",
+          description: "This text completes the heading: 'Everything you want to know about [property name]'",
+        },
+        // { name: "subheading", title: "Subheading", type: "string" },
+        { name: "review", title: "Review Score", type: "number" },
+        { name: "description", title: "Description", type: "textEditor" },
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            /* --- Card 1 --- */
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "subheading", title: "Subheading", type: "string" },
+                {
+                  name: "smallCards",
+                  title: "Small Cards",
+                  type: "array",
+                  of: [
+                    {
+                      type: "object",
+                      fields: [
+                        { name: "icon", title: "Icon", type: "image" },
+                        { name: "heading", title: "Heading", type: "string" },
+                        { name: "subheading", title: "Subheading", type: "string" },
+                        { name: "description", title: "Description", type: "textEditor" },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            /* --- Card 2 --- */
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "subheading", title: "Subheading", type: "string" },
+                {
+                  name: "smallCards",
+                  title: "Small Cards",
+                  type: "array",
+                  of: [
+                    {
+                      type: "object",
+                      fields: [
+                        { name: "icon", title: "Icon", type: "image" },
+                        { name: "heading", title: "Heading", type: "string" },
+                        { name: "subheading", title: "Subheading", type: "string" },
+                        { name: "description", title: "Description", type: "textEditor" },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            /* --- Card 3 --- */
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            /* --- Card 4 --- */
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              description: "University listing nearby",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "subheading", title: "Subheading", type: "string" },
+                {
+                  name: "listItems",
+                  title: "List Items",
+                  type: "array",
+                  of: [
+                    {
+                      type: "object",
+                      fields: [
+                        { name: "icon", title: "Icon", type: "image" },
+                        { name: "heading", title: "Heading", type: "string" },
+                        { name: "subheading", title: "Subheading", type: "string" },
                         {
-                          name: "internalLink",
-                          title: "Internal Link",
-                          type: "reference",
-                          to: [{ type: "reviewPage" }],
+                          name: "link",
+                          title: "Optional Link",
+                          type: "object",
+                          fields: [
+                            { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                            { name: "externalLink", title: "External Link", type: "url" },
+                          ],
                         },
                         {
-                          name: "externalLink",
-                          title: "External Link",
-                          type: "url",
+                          name: "description",
+                          title: "Description List",
+                          type: "array",
+                          of: [
+                            {
+                              type: "object",
+                              fields: [
+                                { name: "text", title: "Text", type: "textEditor" },
+                                {
+                                  name: "link",
+                                  title: "Optional Link",
+                                  type: "object",
+                                  fields: [
+                                    { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                                    { name: "externalLink", title: "External Link", type: "url" },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            /* --- Card 5 --- */
+            {
+              type: "object",
+              name: "card5",
+              title: "Card 5",
+              fields: [
+                {
+                  name: "listItems",
+                  title: "List Items",
+                  type: "array",
+                  of: [
+                    {
+                      type: "object",
+                      fields: [
+                        { name: "icon", title: "Icon", type: "image" },
+                        { name: "heading", title: "Heading", type: "string" },
+                        { name: "subheading", title: "Subheading", type: "string" },
+                        { name: "description", title: "Description", type: "textEditor" },
+                        {
+                          name: "link",
+                          title: "Optional Link",
+                          type: "object",
+                          fields: [
+                            { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                            { name: "externalLink", title: "External Link", type: "url" },
+                          ],
                         },
                       ],
                     },
@@ -580,127 +630,1190 @@ export default defineType({
             },
           ],
         },
-        // {
-        //   name: "othersectioin",
-        //   title: "other Section",
-        //   type: "object",
-        //   group: "main",
-        //   fields: [
-        //     {
-        //       name: "heading",
-        //       title: "Main Heading",
-        //       type: "string",
-        //     },
+      ],
+    },
 
-        //     {
-        //       name: "subheading",
-        //       title: "Subheading",
-        //       type: "string",
-        //     },
+    /* ----- 2. Immediate fit assessment ----- */
+    {
+      name: "sec_immediateFitAssessment",
+      title: "Immediate fit assessment",
+      type: "object",
+      group: "main",
+      fields: [
+        // { name: "subheading", title: "Subheading", type: "string" },
+        // { name: "review", title: "Review Score", type: "number" },
+        // { name: "description", title: "Description", type: "textEditor" },
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor"},
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                 { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "listItems",
+                //   title: "List Items",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         {
+                //           name: "link",
+                //           title: "Optional Link",
+                //           type: "object",
+                //           fields: [
+                //             { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //             { name: "externalLink", title: "External Link", type: "url" },
+                //           ],
+                //         },
+                //         {
+                //           name: "description",
+                //           title: "Description List",
+                //           type: "array",
+                //           of: [
+                //             {
+                //               type: "object",
+                //               fields: [
+                //                 { name: "text", title: "Text", type: "textEditor" },
+                //                 {
+                //                   name: "link",
+                //                   title: "Optional Link",
+                //                   type: "object",
+                //                   fields: [
+                //                     { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //                     { name: "externalLink", title: "External Link", type: "url" },
+                //                   ],
+                //                 },
+                //               ],
+                //             },
+                //           ],
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+           {
+  type: "object",
+  name: "card5",
+  title: "Card 5",
+  fields: [
+    { name: "heading", title: "Heading", type: "string" },
+    { name: "description", title: "Description", type: "textEditor" },
+  ],
+},
+          ],
+        },
+      ],
+    },
 
-        //     /* -------- Optional CTA -------- */
+    /* ----- 3. Overview ----- */
+    {
+      name: "sec_overview",
+      title: "Overview",
+      type: "object",
+      group: "main",
+      fields: [
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "listItems",
+                //   title: "List Items",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         {
+                //           name: "link",
+                //           title: "Optional Link",
+                //           type: "object",
+                //           fields: [
+                //             { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //             { name: "externalLink", title: "External Link", type: "url" },
+                //           ],
+                //         },
+                //         {
+                //           name: "description",
+                //           title: "Description List",
+                //           type: "array",
+                //           of: [
+                //             {
+                //               type: "object",
+                //               fields: [
+                //                 { name: "text", title: "Text", type: "textEditor" },
+                //                 {
+                //                   name: "link",
+                //                   title: "Optional Link",
+                //                   type: "object",
+                //                   fields: [
+                //                     { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //                     { name: "externalLink", title: "External Link", type: "url" },
+                //                   ],
+                //                 },
+                //               ],
+                //             },
+                //           ],
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+  type: "object",
+  name: "card5",
+  title: "Card 5",
+  fields: [
+    { name: "heading", title: "Heading", type: "string" },
+    { name: "description", title: "Description", type: "textEditor" },
+  ],
+},
+          ],
+        },
+      ],
+    },
 
-        //     {
-        //       name: "cta",
-        //       title: "Optional CTA",
-        //       type: "object",
-        //       fields: [
-        //         {
-        //           name: "buttonText",
-        //           title: "Button Text",
-        //           type: "string",
-        //         },
-        //         {
-        //           name: "internalLink",
-        //           title: "Internal Link",
-        //           type: "reference",
-        //           to: [{ type: "reviewPage" }],
-        //         },
-        //         {
-        //           name: "externalLink",
-        //           title: "External Link",
-        //           type: "url",
-        //         },
-        //       ],
-        //     },
+    /* ----- 4. University Commute ----- */
+    {
+      name: "sec_universityCommute",
+      title: "University Commute",
+      type: "object",
+      group: "main",
+      fields: [
+        
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              description: "University listing nearby",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "listItems",
+                //   title: "List Items",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         {
+                //           name: "link",
+                //           title: "Optional Link",
+                //           type: "object",
+                //           fields: [
+                //             { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //             { name: "externalLink", title: "External Link", type: "url" },
+                //           ],
+                //         },
+                //         {
+                //           name: "description",
+                //           title: "Description List",
+                //           type: "array",
+                //           of: [
+                //             {
+                //               type: "object",
+                //               fields: [
+                //                 { name: "text", title: "Text", type: "textEditor" },
+                //                 {
+                //                   name: "link",
+                //                   title: "Optional Link",
+                //                   type: "object",
+                //                   fields: [
+                //                     { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //                     { name: "externalLink", title: "External Link", type: "url" },
+                //                   ],
+                //                 },
+                //               ],
+                //             },
+                //           ],
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+  type: "object",
+  name: "card5",
+  title: "Card 5",
+  fields: [
+    { name: "heading", title: "Heading", type: "string" },
+    { name: "description", title: "Description", type: "textEditor" },
+  ],
+},
+          ],
+        },
+      ],
+    },
 
-        //     /* -------- Location Cards -------- */
+    /* ----- 5. Rooms Pricing ----- */
+    {
+      name: "sec_roomsPricing",
+      title: "Rooms Pricing",
+      type: "object",
+      group: "main",
+      fields: [
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "listItems",
+                //   title: "List Items",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         {
+                //           name: "link",
+                //           title: "Optional Link",
+                //           type: "object",
+                //           fields: [
+                //             { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //             { name: "externalLink", title: "External Link", type: "url" },
+                //           ],
+                //         },
+                //         {
+                //           name: "description",
+                //           title: "Description List",
+                //           type: "array",
+                //           of: [
+                //             {
+                //               type: "object",
+                //               fields: [
+                //                 { name: "text", title: "Text", type: "textEditor" },
+                //                 {
+                //                   name: "link",
+                //                   title: "Optional Link",
+                //                   type: "object",
+                //                   fields: [
+                //                     { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //                     { name: "externalLink", title: "External Link", type: "url" },
+                //                   ],
+                //                 },
+                //               ],
+                //             },
+                //           ],
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+  type: "object",
+  name: "card5",
+  title: "Card 5",
+  fields: [
+    { name: "heading", title: "Heading", type: "string" },
+    { name: "description", title: "Description", type: "textEditor" },
+  ],
+},
+          ],
+        },
+      ],
+    },
 
-        //     {
-        //       name: "cards",
-        //       title: "Location Cards",
-        //       type: "array",
-        //       of: [
-        //         {
-        //           type: "object",
-        //           fields: [
-        //             // {
-        //             //   name: "image",
-        //             //   title: "Location Image",
-        //             //   type: "image",
-        //             //   options: { hotspot: true },
-        //             //   fields: [
-        //             //     {
-        //             //       name: "alt",
-        //             //       title: "Alt Text",
-        //             //       type: "string"
-        //             //     }
-        //             //   ]
-        //             // },
+    /* ----- 6. Total Cost ----- */
+    {
+      name: "sec_totalCost",
+      title: "Total Cost",
+      type: "object",
+      group: "main",
+      fields: [
+        
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "listItems",
+                //   title: "List Items",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         {
+                //           name: "link",
+                //           title: "Optional Link",
+                //           type: "object",
+                //           fields: [
+                //             { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //             { name: "externalLink", title: "External Link", type: "url" },
+                //           ],
+                //         },
+                //         {
+                //           name: "description",
+                //           title: "Description List",
+                //           type: "array",
+                //           of: [
+                //             {
+                //               type: "object",
+                //               fields: [
+                //                 { name: "text", title: "Text", type: "textEditor" },
+                //                 {
+                //                   name: "link",
+                //                   title: "Optional Link",
+                //                   type: "object",
+                //                   fields: [
+                //                     { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //                     { name: "externalLink", title: "External Link", type: "url" },
+                //                   ],
+                //                 },
+                //               ],
+                //             },
+                //           ],
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+  type: "object",
+  name: "card5",
+  title: "Card 5",
+  fields: [
+    { name: "heading", title: "Heading", type: "string" },
+    { name: "description", title: "Description", type: "textEditor" },
+  ],
+},
+          ],
+        },
+      ],
+    },
 
-        //             {
-        //               name: "heading",
-        //               title: "Heading",
-        //               type: "string",
-        //             },
+    /* ----- 7. Amenities Value ----- */
+    {
+      name: "sec_amenitiesValue",
+      title: "Amenities Value",
+      type: "object",
+      group: "main",
+      fields: [
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "listItems",
+                //   title: "List Items",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         {
+                //           name: "link",
+                //           title: "Optional Link",
+                //           type: "object",
+                //           fields: [
+                //             { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //             { name: "externalLink", title: "External Link", type: "url" },
+                //           ],
+                //         },
+                //         {
+                //           name: "description",
+                //           title: "Description List",
+                //           type: "array",
+                //           of: [
+                //             {
+                //               type: "object",
+                //               fields: [
+                //                 { name: "text", title: "Text", type: "textEditor" },
+                //                 {
+                //                   name: "link",
+                //                   title: "Optional Link",
+                //                   type: "object",
+                //                   fields: [
+                //                     { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //                     { name: "externalLink", title: "External Link", type: "url" },
+                //                   ],
+                //                 },
+                //               ],
+                //             },
+                //           ],
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+           {
+  type: "object",
+  name: "card5",
+  title: "Card 5",
+  fields: [
+    { name: "heading", title: "Heading", type: "string" },
+    { name: "description", title: "Description", type: "textEditor" },
+  ],
+},
+          ],
+        },
+      ],
+    },
 
-        //             {
-        //               name: "subheading",
-        //               title: "Subheading",
-        //               type: "string",
-        //             },
+    /* ----- 8. Internet Study Readiness ----- */
+    {
+      name: "sec_internetStudyReadiness",
+      title: "Internet Study Readiness",
+      type: "object",
+      group: "main",
+      fields: [
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "listItems",
+                //   title: "List Items",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         {
+                //           name: "link",
+                //           title: "Optional Link",
+                //           type: "object",
+                //           fields: [
+                //             { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //             { name: "externalLink", title: "External Link", type: "url" },
+                //           ],
+                //         },
+                //         {
+                //           name: "description",
+                //           title: "Description List",
+                //           type: "array",
+                //           of: [
+                //             {
+                //               type: "object",
+                //               fields: [
+                //                 { name: "text", title: "Text", type: "textEditor" },
+                //                 {
+                //                   name: "link",
+                //                   title: "Optional Link",
+                //                   type: "object",
+                //                   fields: [
+                //                     { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //                     { name: "externalLink", title: "External Link", type: "url" },
+                //                   ],
+                //                 },
+                //               ],
+                //             },
+                //           ],
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+  type: "object",
+  name: "card5",
+  title: "Card 5",
+  fields: [
+    { name: "heading", title: "Heading", type: "string" },
+    { name: "description", title: "Description", type: "textEditor" },
+  ],
+},
+          ],
+        },
+      ],
+    },
 
-        //             {
-        //               name: "distance",
-        //               title: "Distance (Optional)",
-        //               type: "string",
-        //               description: "Example: 2 km, 5 mins drive",
-        //             },
-
-        //             {
-        //               name: "link",
-        //               title: "Optional Card Link",
-        //               type: "object",
-        //               fields: [
-        //                 {
-        //                   name: "internalLink",
-        //                   title: "Internal Link",
-        //                   type: "reference",
-        //                   to: [{ type: "reviewPage" }],
-        //                 },
-        //                 {
-        //                   name: "externalLink",
-        //                   title: "External Link",
-        //                   type: "url",
-        //                 },
-        //               ],
-        //             },
-        //           ],
-        //         },
-        //       ],
-        //     },
-        //   ],
-        // },
+    /* ----- 9. Safety Night Experience ----- */
+    {
+      name: "sec_safetyNightExperience",
+      title: "Safety Night Experience",
+      type: "object",
+      group: "main",
+      fields: [
+        {
+          name: "cards",
+          title: "Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "card1",
+              title: "Card 1",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card2",
+              title: "Card 2",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "smallCards",
+                //   title: "Small Cards",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         { name: "description", title: "Description", type: "textEditor" },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+            {
+              type: "object",
+              name: "card3",
+              title: "Card 3",
+              fields: [
+                { name: "icon", title: "Icon", type: "image" },
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+              ],
+            },
+            {
+              type: "object",
+              name: "card4",
+              title: "Card 4",
+              fields: [
+                { name: "heading", title: "Heading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
+                { name: "description", title: "Description", type: "textEditor" },
+                // {
+                //   name: "listItems",
+                //   title: "List Items",
+                //   type: "array",
+                //   of: [
+                //     {
+                //       type: "object",
+                //       fields: [
+                //         { name: "icon", title: "Icon", type: "image" },
+                //         { name: "heading", title: "Heading", type: "string" },
+                //         { name: "subheading", title: "Subheading", type: "string" },
+                //         {
+                //           name: "link",
+                //           title: "Optional Link",
+                //           type: "object",
+                //           fields: [
+                //             { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //             { name: "externalLink", title: "External Link", type: "url" },
+                //           ],
+                //         },
+                //         {
+                //           name: "description",
+                //           title: "Description List",
+                //           type: "array",
+                //           of: [
+                //             {
+                //               type: "object",
+                //               fields: [
+                //                 { name: "text", title: "Text", type: "textEditor" },
+                //                 {
+                //                   name: "link",
+                //                   title: "Optional Link",
+                //                   type: "object",
+                //                   fields: [
+                //                     { name: "internalLink", title: "Internal Link", type: "reference", to: [{ type: "reviewPage" }] },
+                //                     { name: "externalLink", title: "External Link", type: "url" },
+                //                   ],
+                //                 },
+                //               ],
+                //             },
+                //           ],
+                //         },
+                //       ],
+                //     },
+                //   ],
+                // },
+              ],
+            },
+           {
+  type: "object",
+  name: "card5",
+  title: "Card 5",
+  fields: [
+    { name: "heading", title: "Heading", type: "string" },
+    { name: "description", title: "Description", type: "textEditor" },
+  ],
+},
+          ],
+        },
       ],
     },
 
     // more content text editor
+    // {
+    //   name: "reviewDetail",
+    //   title: "Review Detail",
+    //   type: "textEditor",
+    //   group: "main",
+    // },
+
+    /* ================= FAQ SECTION ================= */
+   {
+  name: "faq",
+  title: "FAQ",
+  type: "textEditor",
+  description:
+    "Paste all FAQs here, including questions and answers. Bold formatting will be preserved if supported by the editor.",
+  group: "main",
+},
+{
+  name: "finalVerdict",
+  title: "Final Verdict",
+  type: "object",
+  group: "main",
+  fields: [
     {
-      name: "reviewDetail",
-      title: "Review Detail",
-      type: "textEditor",
-      group: "main",
+      name: "heading",
+      title: "Heading",
+      type: "string",
     },
+    {
+      name: "description",
+      title: "Description",
+      type: "textEditor",
+    },
+  ],
+},
 
     /* ================= SEO SECTION ================= */
 
