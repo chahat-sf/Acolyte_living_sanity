@@ -477,6 +477,14 @@ export const Blog = defineType({
       initialValue: 'acolyte Living',
       group: 'main',
     }),
+    defineField({
+      name: 'authorLinkedinUrl',
+      title: 'Author LinkedIn URL',
+      type: 'url',
+      description: 'LinkedIn profile URL of the author (used to link the author name on the blog page)',
+      validation: (Rule) => Rule.uri({ scheme: ['http', 'https'] }).error('Must be a valid LinkedIn URL'),
+      group: 'main',
+    }),
     // update / created date 
     defineField({
       name: 'publishedAt',
