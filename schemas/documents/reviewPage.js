@@ -480,7 +480,7 @@ export default defineType({
               fields: [
                 { name: "icon", title: "Icon", type: "image" },
                 { name: "heading", title: "Heading", type: "string" },
-                { name: "subheading", title: "Subheading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
                 {
                   name: "smallCards",
                   title: "Small Cards",
@@ -491,7 +491,7 @@ export default defineType({
                       fields: [
                         { name: "icon", title: "Icon", type: "image" },
                         { name: "heading", title: "Heading", type: "string" },
-                        { name: "subheading", title: "Subheading", type: "string" },
+                        // { name: "subheading", title: "Subheading", type: "string" },
                         { name: "description", title: "Description", type: "textEditor" },
                       ],
                     },
@@ -507,7 +507,7 @@ export default defineType({
               fields: [
                 { name: "icon", title: "Icon", type: "image" },
                 { name: "heading", title: "Heading", type: "string" },
-                { name: "subheading", title: "Subheading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
                 {
                   name: "smallCards",
                   title: "Small Cards",
@@ -518,7 +518,7 @@ export default defineType({
                       fields: [
                         { name: "icon", title: "Icon", type: "image" },
                         { name: "heading", title: "Heading", type: "string" },
-                        { name: "subheading", title: "Subheading", type: "string" },
+                        // { name: "subheading", title: "Subheading", type: "string" },
                         { name: "description", title: "Description", type: "textEditor" },
                       ],
                     },
@@ -534,7 +534,7 @@ export default defineType({
               fields: [
                 { name: "icon", title: "Icon", type: "image" },
                 { name: "heading", title: "Heading", type: "string" },
-                { name: "subheading", title: "Subheading", type: "string" },
+                // { name: "subheading", title: "Subheading", type: "string" },
                 { name: "description", title: "Description", type: "textEditor" },
               ],
             },
@@ -546,7 +546,7 @@ export default defineType({
               description: "University listing nearby",
               fields: [
                 { name: "heading", title: "Heading", type: "string" },
-                { name: "subheading", title: "Subheading", type: "string" },
+                // { name: "description", title: "Description", type: "textEditor" },
                 {
                   name: "listItems",
                   title: "List Items",
