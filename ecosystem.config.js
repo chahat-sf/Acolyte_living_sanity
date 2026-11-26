@@ -1,6 +1,7 @@
 module.exports = {
   apps: [{
-    cwd: "/home/startupflora-sanity/htdocs/sanity.startupflora.com",
+    name: "acolyteliving-sanity",
+    cwd: "/home/acolyteliving-sanity/htdocs/sanity.acolyteliving.com",
     script: "npx",
     args: "serve -s ./dist -l 3034",
     env: { NODE_ENV: "production" }
